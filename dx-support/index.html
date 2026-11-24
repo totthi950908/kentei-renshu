@@ -248,12 +248,20 @@ function pq(){
     <div class="meta"><span class="qno num">問${i+1}</span><span class="tag">第${c}章 ${SHORT[c]}</span>${S.rec[i]?`<span>過去 ${S.rec[i].c}/${S.rec[i].n} 正解</span>`:""}</div>
     <div class="q">${q}</div>
     <div class="ch" id="ch">${o.map((t,k)=>`<button type="button" data-k="${k+1}"><span class="n num">${k+1}</span><span>${t}</span></button>`).join("")}</div>
+    <button class="btn main" id="ans" type="button" style="width:100%;margin-top:14px" disabled>選択肢を選んでください</button>
     <div id="res"></div>
     <div class="nav"><button class="btn" id="prev" type="button" ${pos===0?"disabled":""}>前へ</button><button class="btn dark" id="next" type="button">${pos===list.length-1?"終わる":"次へ"}</button></div>
   </div>`;
   const g=id=>document.getElementById(id);
   g("back").onclick=home;
-  g("ch").onclick=ev=>{const b=ev.target.closest("button");if(!b||b.disabled)return;const k=+b.dataset.k,ok=k===a;mark(i,ok);sv();prac.a++;prac.c+=ok?1:0;reveal(k,a,e);document.getElementById("sess").textContent=`この回 ${prac.c}/${prac.a} 正解`};
+  let pick=0;
+  g("ch").onclick=ev=>{const b=ev.target.closest("button");if(!b||b.disabled)return;pick=+b.dataset.k;
+    app.querySelectorAll("#ch button").forEach(x=>x.classList.toggle("sel",+x.dataset.k===pick));
+    g("ans").disabled=false;g("ans").textContent=`(${pick})で解答する`};
+  g("ans").onclick=()=>{if(!pick)return;const ok=pick===a;mark(i,ok);sv();prac.a++;prac.c+=ok?1:0;
+    app.querySelectorAll("#ch button").forEach(x=>x.classList.remove("sel"));
+    reveal(pick,a,e);g("ans").style.display="none";g("sess").textContent=`この回 ${prac.c}/${prac.a} 正解`;
+    g("res").scrollIntoView({behavior:"smooth",block:"nearest"})};
   g("prev").onclick=()=>{prac.pos--;pq();top()};
   g("next").onclick=()=>{if(prac.pos===list.length-1){pdone();return}prac.pos++;pq();top()};
 }
@@ -373,8 +381,9 @@ function review(){
 }
 
 document.addEventListener("keydown",ev=>{
-  if(document.getElementById("modal").classList.contains("on")||/SELECT|TEXTAREA/.test(ev.target.tagName))return;
+  if(document.getElementById("modal").classList.contains("on")||/SELECT|TEXTAREA|INPUT/.test(ev.target.tagName))return;
   if(["1","2","3"].includes(ev.key)){const b=document.querySelector(`#ch button[data-k="${ev.key}"]`);if(b&&!b.disabled)b.click()}
+  else if(ev.key==="Enter"){const b=document.getElementById("ans");if(b&&!b.disabled&&b.style.display!=="none"){ev.preventDefault();b.click()}}
   else if(ev.key==="ArrowRight"){const b=document.getElementById("next");if(b&&!b.disabled)b.click()}
   else if(ev.key==="ArrowLeft"){const b=document.getElementById("prev");if(b&&!b.disabled)b.click()}
 });
