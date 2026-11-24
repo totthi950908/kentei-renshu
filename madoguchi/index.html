@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>窓口セールス3級 問題演習</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Schibsted+Grotesk:wght@600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday study tool on a phone: calm, quick, one thumb
+   IDEA a teller's counter slip: every answer is stamped into a ruled ledger of 100 cells
+   PICTURE the question card (with its case slip); on the home screen, the 100-stamp ledger
+   COLOUR white ground, bank blue #1f5fd6 for correct and actions, pale pink for wrong, black ink
+   TYPE Schibsted Grotesk for numbers + Noto Sans JP for text
+   LAYOUT single column up to 760px; sticky slim bar on question screens */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#060d1c);--ink:light-dark(#0b0b0b,#eef2fa);--sub:light-dark(#566070,#a3b0c6);--line:light-dark(#dce2ec,#1f2d4a);--panel:light-dark(#f2f6fc,#0c1a33);--ok:light-dark(#1f5fd6,#5b93f5);--okbg:light-dark(#e2ebfb,#10295a);--ng:light-dark(#c2185b,#ff8fb3);--ngbg:light-dark(#ffd6e0,#3d1424);--btn:light-dark(#ffffff,#0f1f3d);--warn:light-dark(#9a6700,#ffd27a);--head:#1f5fd6}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 "Noto Sans JP","Hiragino Sans",sans-serif;overflow-x:clip;-webkit-text-size-adjust:100%}
+.num{font-family:"Schibsted Grotesk","Noto Sans JP",sans-serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header.top{background:var(--head);color:#fff;padding:20px 0 22px}
+h1{margin:0;font-size:clamp(26px,6vw,36px);line-height:1.1;font-weight:900}
+header.top p{margin:6px 0 0;font-size:14px;opacity:.92}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px}
+.stats div{background:rgba(255,255,255,.15);border-radius:10px;padding:8px 10px}
+.stats b{display:block;font-size:26px;line-height:1.1;font-weight:800}
+.stats span{font-size:12px;opacity:.95}
+section{margin:22px 0}
+h2{font-size:20px;line-height:1.3;margin:0 0 10px}
+.modes{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.mode{border:1.5px solid var(--line);border-radius:14px;padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:10px}
+.mode h3{margin:0;font-size:19px}
+.mode p{margin:0;font-size:14px;color:var(--sub)}
+.mode.exam{background:var(--panel)}
+label.f{display:block;font-size:13px;color:var(--sub);margin-bottom:2px}
+select,textarea{font:inherit;font-size:16px;width:100%;min-height:44px;border-radius:8px;border:1.5px solid var(--line);background:var(--btn);color:var(--ink);padding:6px 10px}
+textarea{min-height:90px;font-size:13px;font-family:ui-monospace,monospace}
+.btn{font:inherit;font-weight:700;min-height:48px;padding:0 18px;border-radius:10px;cursor:pointer;border:1.5px solid var(--line);background:var(--btn);color:var(--ink);touch-action:manipulation}
+.btn.main{background:var(--head);border-color:var(--head);color:#fff}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.btn.ghost{background:transparent}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.sm{min-height:40px;padding:0 12px;font-size:14px}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #ffb703;outline-offset:2px}
+.ledger{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px}
+.ledger button{aspect-ratio:1;border-radius:5px;border:1.5px solid var(--line);background:var(--bg);color:var(--sub);font:600 11px "Schibsted Grotesk",sans-serif;padding:0;cursor:pointer;touch-action:manipulation}
+.ledger button.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.ledger button.ng{background:var(--ngbg);border-color:var(--ng);color:var(--ng)}
+.ledger button.fx{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.ledger .row{grid-column:1/-1;font-size:12px;color:var(--sub);margin-top:6px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--sub);margin:8px 0 10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;border:1.5px solid var(--line);margin-right:5px;vertical-align:-1px}
+.legend .a{background:var(--ok);border-color:var(--ok)}.legend .b{background:var(--ngbg);border-color:var(--ng)}.legend .c{background:var(--okbg);border-color:var(--ok)}
+.chap{display:grid;gap:10px}
+.chap .r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font-size:14px}
+.chap .m{grid-column:1/-1;height:8px;border-radius:4px;background:var(--line);overflow:hidden;display:flex}
+.chap .m i{display:block;height:100%}
+.chap .m .g{background:var(--ok)}.chap .m .w{background:var(--ng);opacity:.55}
+.hist{width:100%;border-collapse:collapse;font-size:14px}
+.hist th,.hist td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
+.hist td.r,.hist th.r{text-align:right}
+.hist tr.click{cursor:pointer}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:999px;background:var(--ok);color:#fff}
+.pill.no{background:var(--ng)}
+.empty{color:var(--sub);font-size:14px;padding:10px 0}
+details{border:1.5px solid var(--line);border-radius:12px;padding:10px 14px}
+details summary{cursor:pointer;font-weight:700;min-height:32px}
+.row2{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1.5px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:10px;min-height:56px}
+.bar .t{flex:1;font-size:14px;color:var(--sub);line-height:1.3}
+.bar .t b{color:var(--ink);font-size:16px}
+.timer{font-size:22px;font-weight:800}
+.timer.low{color:var(--ng)}
+.prog{height:4px;background:var(--line)}
+.prog i{display:block;height:100%;background:var(--ok);transition:width .25s}
+.card{padding:18px 0 28px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;color:var(--sub);font-size:13px}
+.qno{font-size:34px;font-weight:800;color:var(--ink);line-height:1}
+.tag{background:var(--panel);border-radius:6px;padding:2px 10px;font-size:13px;color:var(--ink)}
+.case{margin:14px 0 0;border:1.5px solid var(--line);border-left:5px solid var(--ok);border-radius:8px;background:var(--panel);padding:12px 14px;font-size:15px;line-height:1.75}
+.case b{display:block;font-size:13px;color:var(--ok);margin-bottom:2px}
+.q{font-size:18px;font-weight:700;line-height:1.65;margin:14px 0 16px}
+.ch{display:grid;gap:10px}
+.ch button{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:start;text-align:left;font:inherit;font-size:16px;color:var(--ink);background:var(--btn);border:1.5px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;line-height:1.6;touch-action:manipulation}
+.ch .n{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--line);font-weight:800}
+.ch button:disabled{cursor:default}
+.ch button.sel{border-color:var(--ink);background:var(--panel)}
+.ch button.sel .n{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.ch button.right{background:var(--okbg);border-color:var(--ok)}
+.ch button.right .n{background:var(--ok);border-color:var(--ok);color:#fff}
+.ch button.wrong{background:var(--ngbg);border-color:var(--ng)}
+.ch button.wrong .n{background:var(--ng);border-color:var(--ng);color:#fff}
+.ch button.dim{opacity:.55}
+.res{margin-top:16px;border-radius:10px;padding:14px 16px;background:var(--panel)}
+.res b{font-size:18px}
+.res.good b{color:var(--ok)}.res.bad b{color:var(--ng)}
+.res p{margin:6px 0 0}
+.nav{display:flex;gap:10px;margin-top:18px}
+.nav .btn{flex:1}
+.flag{font:inherit;font-size:14px;min-height:40px;border-radius:8px;border:1.5px dashed var(--line);background:transparent;color:var(--sub);padding:0 12px;cursor:pointer;margin-top:12px}
+.flag.on{border-style:solid;border-color:var(--warn);color:var(--warn);font-weight:700}
+.sheet{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px;margin-top:10px}
+.sheet button{aspect-ratio:1;border-radius:5px;border:1.5px solid var(--line);background:var(--bg);color:var(--sub);font:600 12px "Schibsted Grotesk",sans-serif;padding:0;cursor:pointer;position:relative}
+.sheet button.done{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.sheet button.fl::after{content:"";position:absolute;top:2px;right:2px;width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.sheet button.cur{outline:2.5px solid var(--ok);outline-offset:1px}
+.sheet button.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.sheet button.ng{background:var(--ngbg);border-color:var(--ng);color:var(--ng)}
+.big{font-size:clamp(48px,14vw,72px);font-weight:800;line-height:1}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:end;justify-content:center;z-index:20;padding:16px}
+.modal.on{display:flex}
+.modal .box{background:var(--bg);border-radius:16px;padding:20px;max-width:440px;width:100%}
+.modal p{margin:0 0 14px;white-space:pre-line}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;display:none;z-index:30}
+.note{font-size:13px;color:var(--sub)}
+@media(max-width:520px){.modes{grid-template-columns:minmax(0,1fr)}.ledger button{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.prog i{transition:none}}
+</style>
+</head>
+<body>
+<div id="app"><div class="wrap" style="padding:40px 16px">読み込み中…</div></div>
+<div class="modal" id="modal"><div class="box"><p id="mtext"></p><div class="nav" style="margin:0"><button class="btn" id="mno" type="button">戻る</button><button class="btn main" id="myes" type="button">OK</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+{
+const TITLE="窓口セールス3級 問題演習";
+const CH=["","窓口応対","業務知識","技能・応用"];
+const EXAM_SINGLE={1:5,2:15},EXAM_CASES=15,TOTAL=50,PASS=60;
+const EXAM_SEC=120*60;
+const K="madoguchi3-v1";
+const app=document.getElementById("app");
+let Q=[],C=[],N=0;
+let S={rec:{},hist:[],exam:null,ps:{scope:"all",order:"seq"}};
+let view="home",prac=null,timerId=0,resIdx=-1,revPos=0;
+
+const ld=()=>{try{const s=JSON.parse(localStorage.getItem(K)||"null");if(s&&s.rec)S=Object.assign(S,s)}catch(e){}};
+const sv=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const toast=t=>{const el=document.getElementById("toast");el.textContent=t;el.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>el.style.display="none",2200)};
+const ask=(t,yes,ok="OK")=>{const m=document.getElementById("modal");document.getElementById("mtext").textContent=t;document.getElementById("myes").textContent=ok;m.classList.add("on");document.getElementById("myes").onclick=()=>{m.classList.remove("on");yes()};document.getElementById("mno").onclick=()=>m.classList.remove("on")};
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const mark=(i,ok)=>{const r=S.rec[i]||{n:0,c:0,l:0};r.n++;r.c+=ok?1:0;r.l=ok?1:0;S.rec[i]=r};
+const st=i=>{const r=S.rec[i];return !r?"":r.l===1?(r.n>r.c?"fx":"ok"):"ng"};
+const fmtT=s=>{s=Math.max(0,Math.round(s));const h=Math.floor(s/3600),m=Math.floor(s%3600/60);return (h?h+":":"")+String(m).padStart(h?2:1,"0")+":"+String(s%60).padStart(2,"0")};
+const fmtD=t=>{const d=new Date(t);return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`};
+const top=()=>window.scrollTo({top:0});
+const ids=f=>[...Array(N).keys()].filter(f);
+/* 事例問題:事例番号と、その事例の何問目か */
+const caseNo=i=>Q[i][5];
+const caseSub=i=>i>0&&Q[i-1][5]===Q[i][5]?2:1;
+const caseBox=(i,hideNo)=>Q[i][5]<0?"":`<div class="case"><b>事例${hideNo?"":Q[i][5]+1}(この事例について2問出題・この問題は${caseSub(i)}問目)</b>${C[Q[i][5]]}</div>`;
+/* ランダム順でも、同じ事例の2問は続けて出す */
+function arrange(list,rnd){
+  const units=[],seen=new Set();
+  for(const i of list){if(seen.has(i))continue;
+    const k=Q[i][5];
+    if(k>=0){const pair=list.filter(j=>Q[j][5]===k).sort((a,b)=>a-b);pair.forEach(j=>seen.add(j));units.push(pair)}
+    else{seen.add(i);units.push([i])}}
+  if(rnd)shuffle(units);
+  return units.flat();
+}
+
+/* ---------- home ---------- */
+function home(){
+  view="home";clearInterval(timerId);
+  const done=ids(i=>S.rec[i]).length,ok=ids(i=>S.rec[i]&&S.rec[i].l===1).length,ng=done-ok;
+  const best=S.hist.length?Math.max(...S.hist.map(h=>h.score)):null;
+  const ex=S.exam;
+  const sc=S.ps.scope;
+  const opt=(v,t)=>`<option value="${v}"${sc===v?" selected":""}>${t}</option>`;
+  app.innerHTML=`
+  <header class="top"><div class="wrap">
+    <h1>窓口セールス3級<br>問題演習</h1>
+    <p>銀行業務検定試験「窓口セールス3級」予想問題 全${N}問(五答択一・事例${C.length}題を含む)</p>
+    <div class="stats">
+      <div><b class="num">${done}<small style="font-size:14px">/${N}</small></b><span>解いた問題</span></div>
+      <div><b class="num">${done?Math.round(ok/done*100):0}<small style="font-size:14px">%</small></b><span>正答率(最新の解答)</span></div>
+      <div><b class="num">${best===null?"–":best}<small style="font-size:14px">${best===null?"":"点"}</small></b><span>本番モード最高点</span></div>
+    </div>
+  </div></header>
+  <div class="wrap">
+  <section class="modes">
+    <div class="mode">
+      <h3>練習モード</h3>
+      <p>全${N}問から好きな範囲で。1問ごとに正解と解説が出ます。</p>
+      <div><label class="f" for="scope">出題範囲</label>
+      <select id="scope">${opt("all","全問")}${opt("c1","(1)"+CH[1])}${opt("c2","(2)"+CH[2])}${opt("c3","(3)"+CH[3]+"(事例問題)")}${opt("new","まだ解いていない問題")}${opt("ng","前回まちがえた問題")}${opt("weak","2回以上まちがえた問題")}</select></div>
+      <div><label class="f" for="order">順番</label>
+      <select id="order"><option value="seq"${S.ps.order==="seq"?" selected":""}>番号順</option><option value="rnd"${S.ps.order==="rnd"?" selected":""}>ランダム</option></select></div>
+      <button class="btn main" id="goP" type="button">練習を始める</button>
+    </div>
+    <div class="mode exam">
+      <h3>本番モード</h3>
+      <p>本番と同じ50問・120分。窓口応対5問・業務知識15問・技能応用15事例30問の構成で、最後にまとめて採点します。60点(30問)で合格。</p>
+      ${ex?`<p style="color:var(--ink)"><b>受験中の模試があります</b>(解答 ${ex.ans.filter(a=>a).length}/50・残り ${fmtT((ex.end-Date.now())/1000)})</p><button class="btn dark" id="resume" type="button">続きから再開</button><button class="btn ghost sm" id="newE" type="button">破棄して新しく始める</button>`:`<button class="btn dark" id="goE" type="button">本番モードを始める</button>`}
+    </div>
+  </section>
+
+  <section>
+    <h2>正誤状況</h2>
+    <div class="legend"><span><i class="a"></i>正解</span><span><i class="c"></i>前にまちがえ→今は正解</span><span><i class="b"></i>まちがえ</span><span><i></i>未解答</span></div>
+    <div class="chap" style="margin-bottom:14px">${[1,2,3].map(c=>{const all=ids(i=>Q[i][0]===c),g=all.filter(i=>S.rec[i]&&S.rec[i].l===1).length,w=all.filter(i=>S.rec[i]&&S.rec[i].l===0).length;return `<div class="r"><span>(${c})${CH[c]}</span><span class="num">正解 ${g} ・ ✕ ${w} / ${all.length}</span><span class="m"><i class="g" style="width:${g/all.length*100}%"></i><i class="w" style="width:${w/all.length*100}%"></i></span></div>`}).join("")}</div>
+    <p class="note" style="margin:0 0 6px">番号を押すと、その問題から練習できます。技能・応用は2問で1つの事例です。</p>
+    <div class="ledger" id="ledger">${[1,2,3].map(c=>`<div class="row">(${c})${CH[c]}</div>`+ids(i=>Q[i][0]===c).map(i=>`<button type="button" class="num ${st(i)}" data-i="${i}" aria-label="問${i+1}">${i+1}</button>`).join("")).join("")}</div>
+    <div class="row2"><span class="note">まちがえ ${ng}問 ・ 2回以上まちがえ ${ids(i=>S.rec[i]&&S.rec[i].n-S.rec[i].c>=2).length}問</span></div>
+  </section>
+
+  <section>
+    <h2>本番モードの記録</h2>
+    ${S.hist.length?`<div style="overflow-x:auto"><table class="hist"><thead><tr><th>日時</th><th class="r">得点</th><th>判定</th><th class="r">時間</th></tr></thead><tbody>${S.hist.map((h,k)=>({h,k})).reverse().map(({h,k})=>`<tr class="click" data-k="${k}"><td class="num">${fmtD(h.t)}</td><td class="r num"><b>${h.score}</b>点</td><td><span class="pill ${h.score>=PASS?"":"no"}">${h.score>=PASS?"合格":"不合格"}</span></td><td class="r num">${fmtT(h.sec)}</td></tr>`).join("")}</tbody></table></div><p class="note">行を押すと、その回の答え合わせを見られます。</p>`:`<p class="empty">まだ記録はありません。本番モードを解くとここに得点が残ります。</p>`}
+  </section>
+
+  <section>
+    <details><summary>記録のバックアップ・リセット</summary>
+      <p class="note">記録はこのスマホのブラウザにだけ保存されます。機種変更やブラウザのデータ削除の前に、コードをコピーしてメモ等に保存しておくと、あとで貼り付けて復元できます。</p>
+      <div class="row2"><button class="btn sm" id="copy" type="button">バックアップコードをコピー</button></div>
+      <label class="f" for="imp" style="margin-top:10px">復元するときはここにコードを貼り付け</label>
+      <textarea id="imp" placeholder="バックアップコード"></textarea>
+      <div class="row2"><button class="btn sm" id="restore" type="button">貼り付けたコードで復元</button><button class="btn sm ghost" id="wipe" type="button" style="color:var(--ng)">すべての記録を消す</button></div>
+      <p class="note" style="margin-top:14px">このスマホで合言葉の入力を求めるように戻すには<button class="btn sm ghost" id="lock" type="button">合言葉をこのスマホから消す</button></p>
+    </details>
+  </section>
+  <p class="note" style="margin:24px 0 40px">オリジナルの予想問題です。科目構成は経済法令研究会の公表内容(CBT方式・五答択一式50問・120分・60点以上で合格)に合わせています。法令・制度は2026年11月時点の内容です。</p>
+  </div>`;
+  const g=id=>document.getElementById(id);
+  g("scope").onchange=e=>{S.ps.scope=e.target.value;sv()};
+  g("order").onchange=e=>{S.ps.order=e.target.value;sv()};
+  g("goP").onclick=()=>startPrac(S.ps.scope,S.ps.order);
+  if(g("goE"))g("goE").onclick=()=>ask("本番モードを始めます。120分のタイマーが動き出します。途中で閉じても、あとから再開できます(時間は進みます)。",startExam,"始める");
+  if(g("resume"))g("resume").onclick=examView;
+  if(g("newE"))g("newE").onclick=()=>ask("受験中の模試を破棄して、新しく始めますか?",()=>{S.exam=null;sv();startExam()},"破棄して始める");
+  g("ledger").onclick=e=>{const b=e.target.closest("button");if(b)startPrac("all","seq",+b.dataset.i)};
+  const tb=app.querySelector(".hist tbody");if(tb)tb.onclick=e=>{const tr=e.target.closest("tr");if(tr){resIdx=+tr.dataset.k;result()}};
+  g("copy").onclick=()=>{const code=btoa(unescape(encodeURIComponent(JSON.stringify({rec:S.rec,hist:S.hist}))));navigator.clipboard.writeText(code).then(()=>toast("コピーしました。メモなどに貼って保存してください")).catch(()=>{g("imp").value=code;g("imp").select();toast("下の欄のコードを長押ししてコピーしてください")})};
+  g("restore").onclick=()=>{try{const d=JSON.parse(decodeURIComponent(escape(atob(g("imp").value.trim()))));if(!d.rec)throw 0;ask("貼り付けたコードで記録を上書きしますか?",()=>{S.rec=d.rec;S.hist=d.hist||[];sv();toast("復元しました");home()},"上書きする")}catch(e){toast("コードを読み取れませんでした")}};
+  g("lock").onclick=()=>ask("このスマホに記憶した合言葉を消します。解答の記録は消えません。次に開くときに合言葉の入力が必要になります。",()=>window.forgetKey(),"消す");
+  g("wipe").onclick=()=>ask("正誤状況と本番モードの記録をすべて消します。元に戻せません。",()=>{S.rec={};S.hist=[];S.exam=null;sv();home();toast("記録を消しました")},"消す");
+}
+
+/* ---------- practice ---------- */
+function startPrac(scope,order,from){
+  let list;
+  if(Array.isArray(scope))list=scope.slice();
+  else list=ids(i=>{const r=S.rec[i];switch(scope){case"c1":case"c2":case"c3":return Q[i][0]===+scope[1];case"new":return !r;case"ng":return r&&r.l===0;case"weak":return r&&r.n-r.c>=2;default:return true}});
+  if(!list.length){toast(scope==="new"?"すべて解き終わっています":"該当する問題はありません");return}
+  list=arrange(list,order==="rnd");
+  let pos=from!==undefined?Math.max(0,list.indexOf(from)):0;
+  prac={list,pos,a:0,c:0};
+  pq();
+}
+function pq(){
+  view="prac";const {list,pos}=prac,i=list[pos],[c,q,o,a,e]=Q[i];
+  app.innerHTML=`
+  <div class="bar"><div class="wrap"><button class="btn sm ghost" id="back" type="button">← もどる</button><div class="t">練習 <b class="num">${pos+1}</b> / <span class="num">${list.length}</span><br><span class="num" id="sess">この回 ${prac.c}/${prac.a} 正解</span></div></div><div class="prog"><i style="width:${(pos+1)/list.length*100}%"></i></div></div>
+  <div class="wrap card">
+    <div class="meta"><span class="qno num">問${i+1}</span><span class="tag">(${c})${CH[c]}</span>${S.rec[i]?`<span>過去 ${S.rec[i].c}/${S.rec[i].n} 正解</span>`:""}</div>
+    ${caseBox(i)}
+    <div class="q">${q}</div>
+    <div class="ch" id="ch">${o.map((t,k)=>`<button type="button" data-k="${k+1}"><span class="n num">${k+1}</span><span>${t}</span></button>`).join("")}</div>
+    <button class="btn main" id="ans" type="button" style="width:100%;margin-top:14px" disabled>選択肢を選んでください</button>
+    <div id="res"></div>
+    <div class="nav"><button class="btn" id="prev" type="button" ${pos===0?"disabled":""}>前へ</button><button class="btn dark" id="next" type="button">${pos===list.length-1?"終わる":"次へ"}</button></div>
+  </div>`;
+  const g=id=>document.getElementById(id);
+  let pick=0;
+  g("back").onclick=home;
+  g("ch").onclick=ev=>{const b=ev.target.closest("button");if(!b||b.disabled)return;pick=+b.dataset.k;
+    app.querySelectorAll("#ch button").forEach(x=>x.classList.toggle("sel",+x.dataset.k===pick));
+    g("ans").disabled=false;g("ans").textContent=`(${pick})で解答する`};
+  g("ans").onclick=()=>{if(!pick)return;const ok=pick===a;mark(i,ok);sv();prac.a++;prac.c+=ok?1:0;
+    app.querySelectorAll("#ch button").forEach(x=>x.classList.remove("sel"));
+    reveal(pick,a,e);g("ans").style.display="none";g("sess").textContent=`この回 ${prac.c}/${prac.a} 正解`;
+    g("res").scrollIntoView({behavior:"smooth",block:"nearest"})};
+  g("prev").onclick=()=>{prac.pos--;pq();top()};
+  g("next").onclick=()=>{if(prac.pos===list.length-1){pdone();return}prac.pos++;pq();top()};
+}
+function reveal(k,a,e){
+  app.querySelectorAll("#ch button").forEach(b=>{const n=+b.dataset.k;b.disabled=true;b.classList.add(n===a?"right":n===k?"wrong":"dim")});
+  const ok=k===a;
+  document.getElementById("res").innerHTML=`<div class="res ${ok?"good":"bad"}"><b>${k?(ok?"正解":"不正解"):"未解答"}　正解は(${a})</b><p>${e}</p></div>`;
+}
+function pdone(){
+  view="pdone";
+  const {a,c,list}=prac,wrong=list.filter(i=>S.rec[i]&&S.rec[i].l===0);
+  app.innerHTML=`<div class="wrap card">
+  <h2>練習おつかれさまでした</h2>
+  <p class="big num">${c}<span style="font-size:24px"> / ${a}問 正解</span></p>
+  <p class="note">出題 ${list.length}問のうち ${a}問に解答しました。</p>
+  <div class="nav" style="flex-direction:column">${wrong.length?`<button class="btn main" id="re" type="button">この範囲でまちがえた${wrong.length}問を解き直す</button>`:""}<button class="btn" id="h" type="button">ホームにもどる</button></div></div>`;
+  if(wrong.length)document.getElementById("re").onclick=()=>startPrac(wrong,"seq");
+  document.getElementById("h").onclick=home;top();
+}
+
+/* ---------- exam ---------- */
+function startExam(){
+  let list=[];
+  for(const c of [1,2])list=list.concat(shuffle(ids(i=>Q[i][0]===c)).slice(0,EXAM_SINGLE[c]).sort((x,y)=>x-y));
+  const ks=shuffle([...Array(C.length).keys()]).slice(0,EXAM_CASES).sort((x,y)=>x-y);
+  for(const k of ks)list=list.concat(ids(i=>Q[i][5]===k));
+  S.exam={ids:list,ans:Array(TOTAL).fill(0),fl:Array(TOTAL).fill(0),start:Date.now(),end:Date.now()+EXAM_SEC*1000,pos:0};
+  sv();examView();
+}
+function examCaseLabel(ids,p){const i=ids[p];if(Q[i][5]<0)return "";let n=0,seen=new Set();for(let j=0;j<=p;j++){const k=Q[ids[j]][5];if(k>=0&&!seen.has(k)){seen.add(k);n++}}return `<span class="tag">事例${n} / ${EXAM_CASES}</span>`}
+function examView(){
+  view="exam";clearInterval(timerId);
+  const ex=S.exam;if(!ex){home();return}
+  if(Date.now()>=ex.end){submit(true);return}
+  const p=ex.pos,i=ex.ids[p],[c,q,o]=Q[i];
+  const answered=ex.ans.filter(x=>x).length;
+  app.innerHTML=`
+  <div class="bar"><div class="wrap"><button class="btn sm ghost" id="sheetB" type="button">一覧</button><div class="t"><b class="num">${p+1}</b> / 50問　<span class="num" id="cnt">解答 ${answered}</span></div><span class="timer num" id="timer">${fmtT((ex.end-Date.now())/1000)}</span></div><div class="prog"><i style="width:${answered/TOTAL*100}%"></i></div></div>
+  <div class="wrap card">
+    <div class="meta"><span class="qno num">第${p+1}問</span><span class="tag">(${c})${CH[c]}</span>${examCaseLabel(ex.ids,p)}</div>
+    ${caseBox(i,true)}
+    <div class="q">${q}</div>
+    <div class="ch" id="ch">${o.map((t,k)=>`<button type="button" data-k="${k+1}" class="${ex.ans[p]===k+1?"sel":""}"><span class="n num">${k+1}</span><span>${t}</span></button>`).join("")}</div>
+    <button type="button" class="flag ${ex.fl[p]?"on":""}" id="fl">${ex.fl[p]?"見直しマーク中":"あとで見直す"}</button>
+    <div class="nav"><button class="btn" id="prev" type="button" ${p===0?"disabled":""}>前へ</button><button class="btn dark" id="next" type="button">${p===TOTAL-1?"解答一覧へ":"次へ"}</button></div>
+    <div id="sheet" style="display:none;margin-top:22px">
+      <h2 style="font-size:17px">解答一覧</h2>
+      <p class="note" style="margin:0">黒=解答済み、点=見直しマーク。番号を押すとその問題へ移動します。第21問からが技能・応用(事例)です。</p>
+      <div class="sheet" id="sh">${ex.ids.map((_,k)=>`<button type="button" data-k="${k}" class="num ${ex.ans[k]?"done":""} ${ex.fl[k]?"fl":""} ${k===p?"cur":""}">${k+1}</button>`).join("")}</div>
+      <div class="nav" style="flex-direction:column"><button class="btn main" id="sub" type="button">提出して採点する</button><button class="btn ghost sm" id="quit" type="button">中断してホームへ(時間は進みます)</button></div>
+    </div>
+  </div>`;
+  const g=id=>document.getElementById(id);
+  const showSheet=()=>{g("sheet").style.display="block";g("sheet").scrollIntoView({block:"start"})};
+  g("ch").onclick=ev=>{const b=ev.target.closest("button");if(!b)return;const k=+b.dataset.k;ex.ans[p]=ex.ans[p]===k?0:k;sv();
+    app.querySelectorAll("#ch button").forEach(x=>x.classList.toggle("sel",+x.dataset.k===ex.ans[p]));
+    const n=ex.ans.filter(x=>x).length;document.getElementById("cnt").textContent="解答 "+n;app.querySelector(".prog i").style.width=n/TOTAL*100+"%";
+    const s=app.querySelector(`#sh button[data-k="${p}"]`);if(s)s.classList.toggle("done",!!ex.ans[p])};
+  g("fl").onclick=()=>{ex.fl[p]=ex.fl[p]?0:1;sv();g("fl").classList.toggle("on",!!ex.fl[p]);g("fl").textContent=ex.fl[p]?"見直しマーク中":"あとで見直す";const s=app.querySelector(`#sh button[data-k="${p}"]`);if(s)s.classList.toggle("fl",!!ex.fl[p])};
+  g("prev").onclick=()=>{ex.pos--;sv();examView();top()};
+  g("next").onclick=()=>{if(p===TOTAL-1){showSheet();return}ex.pos++;sv();examView();top()};
+  g("sheetB").onclick=showSheet;
+  g("sh").onclick=ev=>{const b=ev.target.closest("button");if(!b)return;ex.pos=+b.dataset.k;sv();examView();top()};
+  g("sub").onclick=()=>{const left=TOTAL-ex.ans.filter(x=>x).length,fl=ex.fl.filter(x=>x).length;ask(`提出して採点しますか?${left?`\n未解答が${left}問あります。`:""}${fl?`\n見直しマークが${fl}問あります。`:""}`,()=>submit(false),"提出する")};
+  g("quit").onclick=home;
+  timerId=setInterval(()=>{const r=(ex.end-Date.now())/1000;const t=document.getElementById("timer");if(!t){clearInterval(timerId);return}t.textContent=fmtT(r);t.classList.toggle("low",r<600);if(r<=0){clearInterval(timerId);submit(true)}},1000);
+}
+function submit(timeout){
+  clearInterval(timerId);
+  const ex=S.exam;if(!ex)return;
+  let c=0;const chap={1:[0,0],2:[0,0],3:[0,0]};
+  ex.ids.forEach((i,k)=>{const ok=ex.ans[k]===Q[i][3];if(ok)c++;chap[Q[i][0]][1]++;if(ok)chap[Q[i][0]][0]++;if(ex.ans[k])mark(i,ok)});
+  const sec=Math.min(EXAM_SEC,(Math.min(Date.now(),ex.end)-ex.start)/1000);
+  S.hist.push({t:Date.now(),ids:ex.ids,ans:ex.ans,score:c*2,sec,chap});
+  if(S.hist.length>30)S.hist.shift();
+  S.exam=null;sv();
+  resIdx=S.hist.length-1;result(timeout);
+}
+function result(timeout){
+  view="result";clearInterval(timerId);
+  const h=S.hist[resIdx];if(!h){home();return}
+  const c=h.score/2,pass=h.score>=PASS,wrong=h.ids.filter((i,k)=>h.ans[k]!==Q[i][3]);
+  app.innerHTML=`
+  <div class="bar"><div class="wrap"><button class="btn sm ghost" id="back" type="button">← ホーム</button><div class="t">本番モードの結果<br><span class="num">${fmtD(h.t)}</span></div></div></div>
+  <div class="wrap card">
+    ${timeout?`<p style="color:var(--ng);font-weight:700;margin-top:0">時間切れのため自動で提出しました。</p>`:""}
+    <p class="big num" style="margin:0">${h.score}<span style="font-size:24px">点</span></p>
+    <p><span class="pill ${pass?"":"no"}" style="font-size:15px;padding:3px 14px">${pass?"合格ライン到達":"不合格(あと"+(PASS/2-c)+"問)"}</span></p>
+    <p class="note">50問中 ${c}問正解 ・ 未解答 ${h.ans.filter(a=>!a).length}問 ・ 所要時間 ${fmtT(h.sec)}</p>
+    <div class="chap" style="margin:16px 0">${[1,2,3].map(k=>{const [g,n]=h.chap[k];return `<div class="r"><span>(${k})${CH[k]}</span><span class="num">${g}/${n}</span><span class="m"><i class="g" style="width:${n?g/n*100:0}%"></i></span></div>`}).join("")}</div>
+    <h2 style="font-size:17px;margin-top:20px">答え合わせ</h2>
+    <p class="note" style="margin:0">青=正解、ピンク=不正解。番号を押すと解説を見られます。</p>
+    <div class="sheet" id="sh">${h.ids.map((i,k)=>`<button type="button" data-k="${k}" class="num ${h.ans[k]===Q[i][3]?"ok":"ng"}">${k+1}</button>`).join("")}</div>
+    <div class="nav" style="flex-direction:column">${wrong.length?`<button class="btn main" id="re" type="button">まちがえた${wrong.length}問を練習モードで解き直す</button>`:""}<button class="btn dark" id="again" type="button">もう一度本番モード</button></div>
+  </div>`;
+  const g=id=>document.getElementById(id);
+  g("back").onclick=home;
+  g("sh").onclick=e=>{const b=e.target.closest("button");if(b){revPos=+b.dataset.k;review()}};
+  if(wrong.length)g("re").onclick=()=>startPrac(wrong,"seq");
+  g("again").onclick=()=>{if(S.exam){examView();return}ask("新しい本番モードを始めます。120分のタイマーが動き出します。",startExam,"始める")};
+  top();
+}
+function review(){
+  view="review";
+  const h=S.hist[resIdx],i=h.ids[revPos],[c,q,o,a,e]=Q[i],k=h.ans[revPos];
+  app.innerHTML=`
+  <div class="bar"><div class="wrap"><button class="btn sm ghost" id="back" type="button">← 結果</button><div class="t">答え合わせ <b class="num">${revPos+1}</b> / 50</div></div></div>
+  <div class="wrap card">
+    <div class="meta"><span class="qno num">第${revPos+1}問</span><span class="tag">(${c})${CH[c]}</span><span class="num">問題番号 ${i+1}</span></div>
+    ${caseBox(i)}
+    <div class="q">${q}</div>
+    <div class="ch" id="ch">${o.map((t,n)=>`<button type="button" data-k="${n+1}"><span class="n num">${n+1}</span><span>${t}</span></button>`).join("")}</div>
+    <div id="res"></div>
+    <div class="nav"><button class="btn" id="prev" type="button" ${revPos===0?"disabled":""}>前へ</button><button class="btn dark" id="next" type="button" ${revPos===TOTAL-1?"disabled":""}>次へ</button></div>
+  </div>`;
+  reveal(k,a,e);
+  const g=id=>document.getElementById(id);
+  g("back").onclick=()=>result();
+  g("prev").onclick=()=>{revPos--;review();top()};
+  g("next").onclick=()=>{revPos++;review();top()};
+  top();
+}
+
+document.addEventListener("keydown",ev=>{
+  if(document.getElementById("modal").classList.contains("on")||/SELECT|TEXTAREA|INPUT/.test(ev.target.tagName))return;
+  if(["1","2","3","4","5"].includes(ev.key)){const b=document.querySelector(`#ch button[data-k="${ev.key}"]`);if(b&&!b.disabled)b.click()}
+  else if(ev.key==="Enter"){const b=document.getElementById("ans");if(b&&!b.disabled&&b.style.display!=="none"){ev.preventDefault();b.click()}}
+  else if(ev.key==="ArrowRight"){const b=document.getElementById("next");if(b&&!b.disabled)b.click()}
+  else if(ev.key==="ArrowLeft"){const b=document.getElementById("prev");if(b&&!b.disabled)b.click()}
+});
+
+ld();
+const KK="madoguchi3-key";
+const b64=t=>Uint8Array.from(atob(t),ch=>ch.charCodeAt(0));
+const norm=t=>t.normalize("NFKC").replace(/\s+/g,"");
+let ENC=null;
+async function decryptWith(key){const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:b64(ENC.iv)},key,b64(ENC.ct));return JSON.parse(new TextDecoder().decode(pt))}
+async function derive(pass){const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(norm(pass)),"PBKDF2",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"PBKDF2",salt:b64(ENC.salt),iterations:ENC.it,hash:"SHA-256"},base,{name:"AES-GCM",length:256},true,["decrypt"])}
+function boot(d){Q=d.Q;C=d.C;N=Q.length;if(S.exam&&Date.now()>=S.exam.end){submit(true);return}home()}
+function gate(msg){
+  app.innerHTML=`<header class="top"><div class="wrap"><h1>窓口セールス3級<br>問題演習</h1><p>合言葉を入力してください</p></div></header>
+  <div class="wrap card"><form id="gf" autocomplete="off">
+  <label class="f" for="pw">合言葉</label>
+  <input id="pw" type="text" lang="ja" inputmode="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="font:inherit;font-size:16px;width:100%;min-height:48px;border-radius:8px;border:1.5px solid var(--line);background:var(--btn);color:var(--ink);padding:6px 12px">
+  <label style="display:flex;gap:8px;align-items:center;font-size:14px;margin-top:10px;min-height:32px"><input type="checkbox" id="showpw"> 入力内容を●で隠す</label>
+  <p id="gmsg" style="color:var(--ng);font-weight:700;min-height:1.6em;margin:8px 0">${msg||""}</p>
+  <button class="btn main" type="submit" style="width:100%">開く</button>
+  <p class="note">一度開くと、このスマホでは次回から入力不要です。</p></form></div>`;
+  const pw=document.getElementById("pw");
+  document.getElementById("showpw").onchange=e=>{pw.style.webkitTextSecurity=e.target.checked?"disc":"none"};
+  document.getElementById("gf").onsubmit=async e=>{e.preventDefault();const m=document.getElementById("gmsg");if(!pw.value.trim()){m.textContent="合言葉を入力してください";return}
+    m.textContent="確認しています…";m.style.color="var(--sub)";
+    try{const key=await derive(pw.value);const d=await decryptWith(key);try{const raw=await crypto.subtle.exportKey("raw",key);localStorage.setItem(KK,btoa(String.fromCharCode(...new Uint8Array(raw))))}catch(x){}boot(d)}
+    catch(x){m.style.color="var(--ng)";m.textContent="合言葉がちがいます"}};
+}
+window.forgetKey=()=>{try{localStorage.removeItem(KK)}catch(e){}gate()};
+fetch("questions.enc.json").then(r=>{if(!r.ok)throw 0;return r.json()}).then(async e=>{ENC=e;
+  let saved=null;try{saved=localStorage.getItem(KK)}catch(x){}
+  if(saved){try{const key=await crypto.subtle.importKey("raw",b64(saved),"AES-GCM",false,["decrypt"]);boot(await decryptWith(key));return}catch(x){try{localStorage.removeItem(KK)}catch(y){}}}
+  gate();
+}).catch(()=>{app.innerHTML=`<div class="wrap" style="padding:40px 16px"><h2>問題を読み込めませんでした</h2><p>通信状況を確認して、ページを再読み込みしてください。</p></div>`});
+}
+</script>
+</body>
+</html>
